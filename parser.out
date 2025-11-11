@@ -4,53 +4,52 @@ Grammar
 
 Rule 0     S' -> program
 Rule 1     program -> statements
-Rule 2     statements -> statement
-Rule 3     statements -> statements statement
-Rule 4     statement -> variable_declaration
+Rule 2     statements -> statements statement
+Rule 3     statements -> statement
+Rule 4     statement -> variable_declaration SEMICOLON
 Rule 5     statement -> function_definition
 Rule 6     statement -> if_statement
 Rule 7     statement -> while_statement
 Rule 8     statement -> for_statement
-Rule 9     statement -> expression SEMICOLON
-Rule 10    variable_declaration -> ID EQUALS expression SEMICOLON
-Rule 11    variable_declaration -> ID COLON expression SEMICOLON
-Rule 12    function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE
-Rule 13    if_statement -> IF expression LBRACE statements RBRACE
-Rule 14    if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-Rule 15    while_statement -> WHILE expression LBRACE statements RBRACE
-Rule 16    for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
-Rule 17    expression -> ID
-Rule 18    expression -> NUMBER
+Rule 9     variable_declaration -> ID EQUALS expression
+Rule 10    variable_declaration -> ID COLON expression
+Rule 11    function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE
+Rule 12    if_statement -> IF expression LBRACE statements RBRACE
+Rule 13    if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+Rule 14    while_statement -> WHILE expression LBRACE statements RBRACE
+Rule 15    for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
+Rule 16    expression -> ID
+Rule 17    expression -> NUMBER
 
 Terminals, with rules where they appear
 
-COLON                : 11
-DOTDOT               : 16
-ELSE                 : 14
-EQUALS               : 10
-FOR                  : 16
-FUN                  : 12
-ID                   : 10 11 12 16 17
-IF                   : 13 14
-IN                   : 16
-LBRACE               : 12 13 14 14 15 16
-LPAREN               : 12
-NUMBER               : 18
-RBRACE               : 12 13 14 14 15 16
-RPAREN               : 12
-SEMICOLON            : 9 10 11
-WHILE                : 15
+COLON                : 10
+DOTDOT               : 15
+ELSE                 : 13
+EQUALS               : 9
+FOR                  : 15
+FUN                  : 11
+ID                   : 9 10 11 15 16
+IF                   : 12 13
+IN                   : 15
+LBRACE               : 11 12 13 13 14 15
+LPAREN               : 11
+NUMBER               : 17
+RBRACE               : 11 12 13 13 14 15
+RPAREN               : 11
+SEMICOLON            : 4
+WHILE                : 14
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 9 10 11 13 14 15 16 16
+expression           : 9 10 12 13 14 15 15
 for_statement        : 8
 function_definition  : 5
 if_statement         : 6
 program              : 0
 statement            : 2 3
-statements           : 1 3 12 13 14 14 15 16
+statements           : 1 2 11 12 13 13 14 15
 variable_declaration : 4
 while_statement      : 7
 
@@ -60,30 +59,26 @@ state 0
 
     (0) S' -> . program
     (1) program -> . statements
-    (2) statements -> . statement
-    (3) statements -> . statements statement
-    (4) statement -> . variable_declaration
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . variable_declaration SEMICOLON
     (5) statement -> . function_definition
     (6) statement -> . if_statement
     (7) statement -> . while_statement
     (8) statement -> . for_statement
-    (9) statement -> . expression SEMICOLON
-    (10) variable_declaration -> . ID EQUALS expression SEMICOLON
-    (11) variable_declaration -> . ID COLON expression SEMICOLON
-    (12) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
-    (13) if_statement -> . IF expression LBRACE statements RBRACE
-    (14) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-    (15) while_statement -> . WHILE expression LBRACE statements RBRACE
-    (16) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (9) variable_declaration -> . ID EQUALS expression
+    (10) variable_declaration -> . ID COLON expression
+    (11) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
+    (12) if_statement -> . IF expression LBRACE statements RBRACE
+    (13) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (14) while_statement -> . WHILE expression LBRACE statements RBRACE
+    (15) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
 
-    ID              shift and go to state 10
-    FUN             shift and go to state 11
-    IF              shift and go to state 12
-    WHILE           shift and go to state 13
-    FOR             shift and go to state 14
-    NUMBER          shift and go to state 15
+    ID              shift and go to state 9
+    FUN             shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
 
     program                        shift and go to state 1
     statements                     shift and go to state 2
@@ -93,7 +88,6 @@ state 0
     if_statement                   shift and go to state 6
     while_statement                shift and go to state 7
     for_statement                  shift and go to state 8
-    expression                     shift and go to state 9
 
 state 1
 
@@ -104,65 +98,52 @@ state 1
 state 2
 
     (1) program -> statements .
-    (3) statements -> statements . statement
-    (4) statement -> . variable_declaration
+    (2) statements -> statements . statement
+    (4) statement -> . variable_declaration SEMICOLON
     (5) statement -> . function_definition
     (6) statement -> . if_statement
     (7) statement -> . while_statement
     (8) statement -> . for_statement
-    (9) statement -> . expression SEMICOLON
-    (10) variable_declaration -> . ID EQUALS expression SEMICOLON
-    (11) variable_declaration -> . ID COLON expression SEMICOLON
-    (12) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
-    (13) if_statement -> . IF expression LBRACE statements RBRACE
-    (14) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-    (15) while_statement -> . WHILE expression LBRACE statements RBRACE
-    (16) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (9) variable_declaration -> . ID EQUALS expression
+    (10) variable_declaration -> . ID COLON expression
+    (11) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
+    (12) if_statement -> . IF expression LBRACE statements RBRACE
+    (13) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (14) while_statement -> . WHILE expression LBRACE statements RBRACE
+    (15) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
 
     $end            reduce using rule 1 (program -> statements .)
-    ID              shift and go to state 10
-    FUN             shift and go to state 11
-    IF              shift and go to state 12
-    WHILE           shift and go to state 13
-    FOR             shift and go to state 14
-    NUMBER          shift and go to state 15
+    ID              shift and go to state 9
+    FUN             shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
 
-    statement                      shift and go to state 16
+    statement                      shift and go to state 14
     variable_declaration           shift and go to state 4
     function_definition            shift and go to state 5
     if_statement                   shift and go to state 6
     while_statement                shift and go to state 7
     for_statement                  shift and go to state 8
-    expression                     shift and go to state 9
 
 state 3
 
-    (2) statements -> statement .
+    (3) statements -> statement .
 
-    ID              reduce using rule 2 (statements -> statement .)
-    FUN             reduce using rule 2 (statements -> statement .)
-    IF              reduce using rule 2 (statements -> statement .)
-    WHILE           reduce using rule 2 (statements -> statement .)
-    FOR             reduce using rule 2 (statements -> statement .)
-    NUMBER          reduce using rule 2 (statements -> statement .)
-    $end            reduce using rule 2 (statements -> statement .)
-    RBRACE          reduce using rule 2 (statements -> statement .)
+    ID              reduce using rule 3 (statements -> statement .)
+    FUN             reduce using rule 3 (statements -> statement .)
+    IF              reduce using rule 3 (statements -> statement .)
+    WHILE           reduce using rule 3 (statements -> statement .)
+    FOR             reduce using rule 3 (statements -> statement .)
+    $end            reduce using rule 3 (statements -> statement .)
+    RBRACE          reduce using rule 3 (statements -> statement .)
 
 
 state 4
 
-    (4) statement -> variable_declaration .
+    (4) statement -> variable_declaration . SEMICOLON
 
-    ID              reduce using rule 4 (statement -> variable_declaration .)
-    FUN             reduce using rule 4 (statement -> variable_declaration .)
-    IF              reduce using rule 4 (statement -> variable_declaration .)
-    WHILE           reduce using rule 4 (statement -> variable_declaration .)
-    FOR             reduce using rule 4 (statement -> variable_declaration .)
-    NUMBER          reduce using rule 4 (statement -> variable_declaration .)
-    $end            reduce using rule 4 (statement -> variable_declaration .)
-    RBRACE          reduce using rule 4 (statement -> variable_declaration .)
+    SEMICOLON       shift and go to state 15
 
 
 state 5
@@ -174,7 +155,6 @@ state 5
     IF              reduce using rule 5 (statement -> function_definition .)
     WHILE           reduce using rule 5 (statement -> function_definition .)
     FOR             reduce using rule 5 (statement -> function_definition .)
-    NUMBER          reduce using rule 5 (statement -> function_definition .)
     $end            reduce using rule 5 (statement -> function_definition .)
     RBRACE          reduce using rule 5 (statement -> function_definition .)
 
@@ -188,7 +168,6 @@ state 6
     IF              reduce using rule 6 (statement -> if_statement .)
     WHILE           reduce using rule 6 (statement -> if_statement .)
     FOR             reduce using rule 6 (statement -> if_statement .)
-    NUMBER          reduce using rule 6 (statement -> if_statement .)
     $end            reduce using rule 6 (statement -> if_statement .)
     RBRACE          reduce using rule 6 (statement -> if_statement .)
 
@@ -202,7 +181,6 @@ state 7
     IF              reduce using rule 7 (statement -> while_statement .)
     WHILE           reduce using rule 7 (statement -> while_statement .)
     FOR             reduce using rule 7 (statement -> while_statement .)
-    NUMBER          reduce using rule 7 (statement -> while_statement .)
     $end            reduce using rule 7 (statement -> while_statement .)
     RBRACE          reduce using rule 7 (statement -> while_statement .)
 
@@ -216,215 +194,230 @@ state 8
     IF              reduce using rule 8 (statement -> for_statement .)
     WHILE           reduce using rule 8 (statement -> for_statement .)
     FOR             reduce using rule 8 (statement -> for_statement .)
-    NUMBER          reduce using rule 8 (statement -> for_statement .)
     $end            reduce using rule 8 (statement -> for_statement .)
     RBRACE          reduce using rule 8 (statement -> for_statement .)
 
 
 state 9
 
-    (9) statement -> expression . SEMICOLON
+    (9) variable_declaration -> ID . EQUALS expression
+    (10) variable_declaration -> ID . COLON expression
 
-    SEMICOLON       shift and go to state 17
+    EQUALS          shift and go to state 16
+    COLON           shift and go to state 17
 
 
 state 10
 
-    (10) variable_declaration -> ID . EQUALS expression SEMICOLON
-    (11) variable_declaration -> ID . COLON expression SEMICOLON
-    (17) expression -> ID .
+    (11) function_definition -> FUN . ID LPAREN RPAREN LBRACE statements RBRACE
 
-    EQUALS          shift and go to state 18
-    COLON           shift and go to state 19
-    SEMICOLON       reduce using rule 17 (expression -> ID .)
+    ID              shift and go to state 18
 
 
 state 11
 
-    (12) function_definition -> FUN . ID LPAREN RPAREN LBRACE statements RBRACE
+    (12) if_statement -> IF . expression LBRACE statements RBRACE
+    (13) if_statement -> IF . expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (16) expression -> . ID
+    (17) expression -> . NUMBER
 
     ID              shift and go to state 20
+    NUMBER          shift and go to state 21
 
+    expression                     shift and go to state 19
 
 state 12
 
-    (13) if_statement -> IF . expression LBRACE statements RBRACE
-    (14) if_statement -> IF . expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (14) while_statement -> WHILE . expression LBRACE statements RBRACE
+    (16) expression -> . ID
+    (17) expression -> . NUMBER
 
-    ID              shift and go to state 22
-    NUMBER          shift and go to state 15
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
 
-    expression                     shift and go to state 21
+    expression                     shift and go to state 22
 
 state 13
 
-    (15) while_statement -> WHILE . expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (15) for_statement -> FOR . ID IN expression DOTDOT expression LBRACE statements RBRACE
 
-    ID              shift and go to state 22
-    NUMBER          shift and go to state 15
+    ID              shift and go to state 23
 
-    expression                     shift and go to state 23
 
 state 14
 
-    (16) for_statement -> FOR . ID IN expression DOTDOT expression LBRACE statements RBRACE
+    (2) statements -> statements statement .
 
-    ID              shift and go to state 24
+    ID              reduce using rule 2 (statements -> statements statement .)
+    FUN             reduce using rule 2 (statements -> statements statement .)
+    IF              reduce using rule 2 (statements -> statements statement .)
+    WHILE           reduce using rule 2 (statements -> statements statement .)
+    FOR             reduce using rule 2 (statements -> statements statement .)
+    $end            reduce using rule 2 (statements -> statements statement .)
+    RBRACE          reduce using rule 2 (statements -> statements statement .)
 
 
 state 15
 
-    (18) expression -> NUMBER .
+    (4) statement -> variable_declaration SEMICOLON .
 
-    SEMICOLON       reduce using rule 18 (expression -> NUMBER .)
-    LBRACE          reduce using rule 18 (expression -> NUMBER .)
-    DOTDOT          reduce using rule 18 (expression -> NUMBER .)
+    ID              reduce using rule 4 (statement -> variable_declaration SEMICOLON .)
+    FUN             reduce using rule 4 (statement -> variable_declaration SEMICOLON .)
+    IF              reduce using rule 4 (statement -> variable_declaration SEMICOLON .)
+    WHILE           reduce using rule 4 (statement -> variable_declaration SEMICOLON .)
+    FOR             reduce using rule 4 (statement -> variable_declaration SEMICOLON .)
+    $end            reduce using rule 4 (statement -> variable_declaration SEMICOLON .)
+    RBRACE          reduce using rule 4 (statement -> variable_declaration SEMICOLON .)
 
 
 state 16
 
-    (3) statements -> statements statement .
+    (9) variable_declaration -> ID EQUALS . expression
+    (16) expression -> . ID
+    (17) expression -> . NUMBER
 
-    ID              reduce using rule 3 (statements -> statements statement .)
-    FUN             reduce using rule 3 (statements -> statements statement .)
-    IF              reduce using rule 3 (statements -> statements statement .)
-    WHILE           reduce using rule 3 (statements -> statements statement .)
-    FOR             reduce using rule 3 (statements -> statements statement .)
-    NUMBER          reduce using rule 3 (statements -> statements statement .)
-    $end            reduce using rule 3 (statements -> statements statement .)
-    RBRACE          reduce using rule 3 (statements -> statements statement .)
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
 
+    expression                     shift and go to state 24
 
 state 17
 
-    (9) statement -> expression SEMICOLON .
+    (10) variable_declaration -> ID COLON . expression
+    (16) expression -> . ID
+    (17) expression -> . NUMBER
 
-    ID              reduce using rule 9 (statement -> expression SEMICOLON .)
-    FUN             reduce using rule 9 (statement -> expression SEMICOLON .)
-    IF              reduce using rule 9 (statement -> expression SEMICOLON .)
-    WHILE           reduce using rule 9 (statement -> expression SEMICOLON .)
-    FOR             reduce using rule 9 (statement -> expression SEMICOLON .)
-    NUMBER          reduce using rule 9 (statement -> expression SEMICOLON .)
-    $end            reduce using rule 9 (statement -> expression SEMICOLON .)
-    RBRACE          reduce using rule 9 (statement -> expression SEMICOLON .)
-
-
-state 18
-
-    (10) variable_declaration -> ID EQUALS . expression SEMICOLON
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
-
-    ID              shift and go to state 22
-    NUMBER          shift and go to state 15
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
 
     expression                     shift and go to state 25
 
+state 18
+
+    (11) function_definition -> FUN ID . LPAREN RPAREN LBRACE statements RBRACE
+
+    LPAREN          shift and go to state 26
+
+
 state 19
 
-    (11) variable_declaration -> ID COLON . expression SEMICOLON
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (12) if_statement -> IF expression . LBRACE statements RBRACE
+    (13) if_statement -> IF expression . LBRACE statements RBRACE ELSE LBRACE statements RBRACE
 
-    ID              shift and go to state 22
-    NUMBER          shift and go to state 15
+    LBRACE          shift and go to state 27
 
-    expression                     shift and go to state 26
 
 state 20
 
-    (12) function_definition -> FUN ID . LPAREN RPAREN LBRACE statements RBRACE
+    (16) expression -> ID .
 
-    LPAREN          shift and go to state 27
+    LBRACE          reduce using rule 16 (expression -> ID .)
+    SEMICOLON       reduce using rule 16 (expression -> ID .)
+    DOTDOT          reduce using rule 16 (expression -> ID .)
 
 
 state 21
 
-    (13) if_statement -> IF expression . LBRACE statements RBRACE
-    (14) if_statement -> IF expression . LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (17) expression -> NUMBER .
 
-    LBRACE          shift and go to state 28
+    LBRACE          reduce using rule 17 (expression -> NUMBER .)
+    SEMICOLON       reduce using rule 17 (expression -> NUMBER .)
+    DOTDOT          reduce using rule 17 (expression -> NUMBER .)
 
 
 state 22
 
-    (17) expression -> ID .
+    (14) while_statement -> WHILE expression . LBRACE statements RBRACE
 
-    LBRACE          reduce using rule 17 (expression -> ID .)
-    SEMICOLON       reduce using rule 17 (expression -> ID .)
-    DOTDOT          reduce using rule 17 (expression -> ID .)
+    LBRACE          shift and go to state 28
 
 
 state 23
 
-    (15) while_statement -> WHILE expression . LBRACE statements RBRACE
+    (15) for_statement -> FOR ID . IN expression DOTDOT expression LBRACE statements RBRACE
 
-    LBRACE          shift and go to state 29
+    IN              shift and go to state 29
 
 
 state 24
 
-    (16) for_statement -> FOR ID . IN expression DOTDOT expression LBRACE statements RBRACE
+    (9) variable_declaration -> ID EQUALS expression .
 
-    IN              shift and go to state 30
+    SEMICOLON       reduce using rule 9 (variable_declaration -> ID EQUALS expression .)
 
 
 state 25
 
-    (10) variable_declaration -> ID EQUALS expression . SEMICOLON
+    (10) variable_declaration -> ID COLON expression .
 
-    SEMICOLON       shift and go to state 31
+    SEMICOLON       reduce using rule 10 (variable_declaration -> ID COLON expression .)
 
 
 state 26
 
-    (11) variable_declaration -> ID COLON expression . SEMICOLON
+    (11) function_definition -> FUN ID LPAREN . RPAREN LBRACE statements RBRACE
 
-    SEMICOLON       shift and go to state 32
+    RPAREN          shift and go to state 30
 
 
 state 27
 
-    (12) function_definition -> FUN ID LPAREN . RPAREN LBRACE statements RBRACE
-
-    RPAREN          shift and go to state 33
-
-
-state 28
-
-    (13) if_statement -> IF expression LBRACE . statements RBRACE
-    (14) if_statement -> IF expression LBRACE . statements RBRACE ELSE LBRACE statements RBRACE
-    (2) statements -> . statement
-    (3) statements -> . statements statement
-    (4) statement -> . variable_declaration
+    (12) if_statement -> IF expression LBRACE . statements RBRACE
+    (13) if_statement -> IF expression LBRACE . statements RBRACE ELSE LBRACE statements RBRACE
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . variable_declaration SEMICOLON
     (5) statement -> . function_definition
     (6) statement -> . if_statement
     (7) statement -> . while_statement
     (8) statement -> . for_statement
-    (9) statement -> . expression SEMICOLON
-    (10) variable_declaration -> . ID EQUALS expression SEMICOLON
-    (11) variable_declaration -> . ID COLON expression SEMICOLON
-    (12) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
-    (13) if_statement -> . IF expression LBRACE statements RBRACE
-    (14) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-    (15) while_statement -> . WHILE expression LBRACE statements RBRACE
-    (16) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (9) variable_declaration -> . ID EQUALS expression
+    (10) variable_declaration -> . ID COLON expression
+    (11) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
+    (12) if_statement -> . IF expression LBRACE statements RBRACE
+    (13) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (14) while_statement -> . WHILE expression LBRACE statements RBRACE
+    (15) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
 
-    ID              shift and go to state 10
-    FUN             shift and go to state 11
-    IF              shift and go to state 12
-    WHILE           shift and go to state 13
-    FOR             shift and go to state 14
-    NUMBER          shift and go to state 15
+    ID              shift and go to state 9
+    FUN             shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
 
-    expression                     shift and go to state 9
-    statements                     shift and go to state 34
+    statements                     shift and go to state 31
+    statement                      shift and go to state 3
+    variable_declaration           shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    while_statement                shift and go to state 7
+    for_statement                  shift and go to state 8
+
+state 28
+
+    (14) while_statement -> WHILE expression LBRACE . statements RBRACE
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . variable_declaration SEMICOLON
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . while_statement
+    (8) statement -> . for_statement
+    (9) variable_declaration -> . ID EQUALS expression
+    (10) variable_declaration -> . ID COLON expression
+    (11) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
+    (12) if_statement -> . IF expression LBRACE statements RBRACE
+    (13) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (14) while_statement -> . WHILE expression LBRACE statements RBRACE
+    (15) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
+
+    ID              shift and go to state 9
+    FUN             shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
+
+    statements                     shift and go to state 32
     statement                      shift and go to state 3
     variable_declaration           shift and go to state 4
     function_definition            shift and go to state 5
@@ -434,118 +427,118 @@ state 28
 
 state 29
 
-    (15) while_statement -> WHILE expression LBRACE . statements RBRACE
-    (2) statements -> . statement
-    (3) statements -> . statements statement
-    (4) statement -> . variable_declaration
+    (15) for_statement -> FOR ID IN . expression DOTDOT expression LBRACE statements RBRACE
+    (16) expression -> . ID
+    (17) expression -> . NUMBER
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+
+    expression                     shift and go to state 33
+
+state 30
+
+    (11) function_definition -> FUN ID LPAREN RPAREN . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 34
+
+
+state 31
+
+    (12) if_statement -> IF expression LBRACE statements . RBRACE
+    (13) if_statement -> IF expression LBRACE statements . RBRACE ELSE LBRACE statements RBRACE
+    (2) statements -> statements . statement
+    (4) statement -> . variable_declaration SEMICOLON
     (5) statement -> . function_definition
     (6) statement -> . if_statement
     (7) statement -> . while_statement
     (8) statement -> . for_statement
-    (9) statement -> . expression SEMICOLON
-    (10) variable_declaration -> . ID EQUALS expression SEMICOLON
-    (11) variable_declaration -> . ID COLON expression SEMICOLON
-    (12) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
-    (13) if_statement -> . IF expression LBRACE statements RBRACE
-    (14) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-    (15) while_statement -> . WHILE expression LBRACE statements RBRACE
-    (16) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (9) variable_declaration -> . ID EQUALS expression
+    (10) variable_declaration -> . ID COLON expression
+    (11) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
+    (12) if_statement -> . IF expression LBRACE statements RBRACE
+    (13) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (14) while_statement -> . WHILE expression LBRACE statements RBRACE
+    (15) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
 
-    ID              shift and go to state 10
-    FUN             shift and go to state 11
-    IF              shift and go to state 12
-    WHILE           shift and go to state 13
-    FOR             shift and go to state 14
-    NUMBER          shift and go to state 15
+    RBRACE          shift and go to state 35
+    ID              shift and go to state 9
+    FUN             shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
 
-    expression                     shift and go to state 9
-    statements                     shift and go to state 35
-    statement                      shift and go to state 3
+    statement                      shift and go to state 14
     variable_declaration           shift and go to state 4
     function_definition            shift and go to state 5
     if_statement                   shift and go to state 6
     while_statement                shift and go to state 7
     for_statement                  shift and go to state 8
 
-state 30
-
-    (16) for_statement -> FOR ID IN . expression DOTDOT expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
-
-    ID              shift and go to state 22
-    NUMBER          shift and go to state 15
-
-    expression                     shift and go to state 36
-
-state 31
-
-    (10) variable_declaration -> ID EQUALS expression SEMICOLON .
-
-    ID              reduce using rule 10 (variable_declaration -> ID EQUALS expression SEMICOLON .)
-    FUN             reduce using rule 10 (variable_declaration -> ID EQUALS expression SEMICOLON .)
-    IF              reduce using rule 10 (variable_declaration -> ID EQUALS expression SEMICOLON .)
-    WHILE           reduce using rule 10 (variable_declaration -> ID EQUALS expression SEMICOLON .)
-    FOR             reduce using rule 10 (variable_declaration -> ID EQUALS expression SEMICOLON .)
-    NUMBER          reduce using rule 10 (variable_declaration -> ID EQUALS expression SEMICOLON .)
-    $end            reduce using rule 10 (variable_declaration -> ID EQUALS expression SEMICOLON .)
-    RBRACE          reduce using rule 10 (variable_declaration -> ID EQUALS expression SEMICOLON .)
-
-
 state 32
 
-    (11) variable_declaration -> ID COLON expression SEMICOLON .
-
-    ID              reduce using rule 11 (variable_declaration -> ID COLON expression SEMICOLON .)
-    FUN             reduce using rule 11 (variable_declaration -> ID COLON expression SEMICOLON .)
-    IF              reduce using rule 11 (variable_declaration -> ID COLON expression SEMICOLON .)
-    WHILE           reduce using rule 11 (variable_declaration -> ID COLON expression SEMICOLON .)
-    FOR             reduce using rule 11 (variable_declaration -> ID COLON expression SEMICOLON .)
-    NUMBER          reduce using rule 11 (variable_declaration -> ID COLON expression SEMICOLON .)
-    $end            reduce using rule 11 (variable_declaration -> ID COLON expression SEMICOLON .)
-    RBRACE          reduce using rule 11 (variable_declaration -> ID COLON expression SEMICOLON .)
-
-
-state 33
-
-    (12) function_definition -> FUN ID LPAREN RPAREN . LBRACE statements RBRACE
-
-    LBRACE          shift and go to state 37
-
-
-state 34
-
-    (13) if_statement -> IF expression LBRACE statements . RBRACE
-    (14) if_statement -> IF expression LBRACE statements . RBRACE ELSE LBRACE statements RBRACE
-    (3) statements -> statements . statement
-    (4) statement -> . variable_declaration
+    (14) while_statement -> WHILE expression LBRACE statements . RBRACE
+    (2) statements -> statements . statement
+    (4) statement -> . variable_declaration SEMICOLON
     (5) statement -> . function_definition
     (6) statement -> . if_statement
     (7) statement -> . while_statement
     (8) statement -> . for_statement
-    (9) statement -> . expression SEMICOLON
-    (10) variable_declaration -> . ID EQUALS expression SEMICOLON
-    (11) variable_declaration -> . ID COLON expression SEMICOLON
-    (12) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
-    (13) if_statement -> . IF expression LBRACE statements RBRACE
-    (14) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-    (15) while_statement -> . WHILE expression LBRACE statements RBRACE
-    (16) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (9) variable_declaration -> . ID EQUALS expression
+    (10) variable_declaration -> . ID COLON expression
+    (11) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
+    (12) if_statement -> . IF expression LBRACE statements RBRACE
+    (13) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (14) while_statement -> . WHILE expression LBRACE statements RBRACE
+    (15) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
 
-    RBRACE          shift and go to state 38
-    ID              shift and go to state 10
-    FUN             shift and go to state 11
-    IF              shift and go to state 12
-    WHILE           shift and go to state 13
-    FOR             shift and go to state 14
-    NUMBER          shift and go to state 15
+    RBRACE          shift and go to state 36
+    ID              shift and go to state 9
+    FUN             shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
 
-    expression                     shift and go to state 9
-    statement                      shift and go to state 16
+    statement                      shift and go to state 14
+    variable_declaration           shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    while_statement                shift and go to state 7
+    for_statement                  shift and go to state 8
+
+state 33
+
+    (15) for_statement -> FOR ID IN expression . DOTDOT expression LBRACE statements RBRACE
+
+    DOTDOT          shift and go to state 37
+
+
+state 34
+
+    (11) function_definition -> FUN ID LPAREN RPAREN LBRACE . statements RBRACE
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . variable_declaration SEMICOLON
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . while_statement
+    (8) statement -> . for_statement
+    (9) variable_declaration -> . ID EQUALS expression
+    (10) variable_declaration -> . ID COLON expression
+    (11) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
+    (12) if_statement -> . IF expression LBRACE statements RBRACE
+    (13) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (14) while_statement -> . WHILE expression LBRACE statements RBRACE
+    (15) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
+
+    ID              shift and go to state 9
+    FUN             shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
+
+    statements                     shift and go to state 38
+    statement                      shift and go to state 3
     variable_declaration           shift and go to state 4
     function_definition            shift and go to state 5
     if_statement                   shift and go to state 6
@@ -554,220 +547,221 @@ state 34
 
 state 35
 
-    (15) while_statement -> WHILE expression LBRACE statements . RBRACE
-    (3) statements -> statements . statement
-    (4) statement -> . variable_declaration
-    (5) statement -> . function_definition
-    (6) statement -> . if_statement
-    (7) statement -> . while_statement
-    (8) statement -> . for_statement
-    (9) statement -> . expression SEMICOLON
-    (10) variable_declaration -> . ID EQUALS expression SEMICOLON
-    (11) variable_declaration -> . ID COLON expression SEMICOLON
-    (12) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
-    (13) if_statement -> . IF expression LBRACE statements RBRACE
-    (14) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-    (15) while_statement -> . WHILE expression LBRACE statements RBRACE
-    (16) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (12) if_statement -> IF expression LBRACE statements RBRACE .
+    (13) if_statement -> IF expression LBRACE statements RBRACE . ELSE LBRACE statements RBRACE
 
-    RBRACE          shift and go to state 39
-    ID              shift and go to state 10
-    FUN             shift and go to state 11
-    IF              shift and go to state 12
-    WHILE           shift and go to state 13
-    FOR             shift and go to state 14
-    NUMBER          shift and go to state 15
+    ID              reduce using rule 12 (if_statement -> IF expression LBRACE statements RBRACE .)
+    FUN             reduce using rule 12 (if_statement -> IF expression LBRACE statements RBRACE .)
+    IF              reduce using rule 12 (if_statement -> IF expression LBRACE statements RBRACE .)
+    WHILE           reduce using rule 12 (if_statement -> IF expression LBRACE statements RBRACE .)
+    FOR             reduce using rule 12 (if_statement -> IF expression LBRACE statements RBRACE .)
+    $end            reduce using rule 12 (if_statement -> IF expression LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 12 (if_statement -> IF expression LBRACE statements RBRACE .)
+    ELSE            shift and go to state 39
 
-    expression                     shift and go to state 9
-    statement                      shift and go to state 16
-    variable_declaration           shift and go to state 4
-    function_definition            shift and go to state 5
-    if_statement                   shift and go to state 6
-    while_statement                shift and go to state 7
-    for_statement                  shift and go to state 8
 
 state 36
 
-    (16) for_statement -> FOR ID IN expression . DOTDOT expression LBRACE statements RBRACE
+    (14) while_statement -> WHILE expression LBRACE statements RBRACE .
 
-    DOTDOT          shift and go to state 40
+    ID              reduce using rule 14 (while_statement -> WHILE expression LBRACE statements RBRACE .)
+    FUN             reduce using rule 14 (while_statement -> WHILE expression LBRACE statements RBRACE .)
+    IF              reduce using rule 14 (while_statement -> WHILE expression LBRACE statements RBRACE .)
+    WHILE           reduce using rule 14 (while_statement -> WHILE expression LBRACE statements RBRACE .)
+    FOR             reduce using rule 14 (while_statement -> WHILE expression LBRACE statements RBRACE .)
+    $end            reduce using rule 14 (while_statement -> WHILE expression LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 14 (while_statement -> WHILE expression LBRACE statements RBRACE .)
 
 
 state 37
 
-    (12) function_definition -> FUN ID LPAREN RPAREN LBRACE . statements RBRACE
-    (2) statements -> . statement
-    (3) statements -> . statements statement
-    (4) statement -> . variable_declaration
+    (15) for_statement -> FOR ID IN expression DOTDOT . expression LBRACE statements RBRACE
+    (16) expression -> . ID
+    (17) expression -> . NUMBER
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+
+    expression                     shift and go to state 40
+
+state 38
+
+    (11) function_definition -> FUN ID LPAREN RPAREN LBRACE statements . RBRACE
+    (2) statements -> statements . statement
+    (4) statement -> . variable_declaration SEMICOLON
     (5) statement -> . function_definition
     (6) statement -> . if_statement
     (7) statement -> . while_statement
     (8) statement -> . for_statement
-    (9) statement -> . expression SEMICOLON
-    (10) variable_declaration -> . ID EQUALS expression SEMICOLON
-    (11) variable_declaration -> . ID COLON expression SEMICOLON
-    (12) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
-    (13) if_statement -> . IF expression LBRACE statements RBRACE
-    (14) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-    (15) while_statement -> . WHILE expression LBRACE statements RBRACE
-    (16) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (9) variable_declaration -> . ID EQUALS expression
+    (10) variable_declaration -> . ID COLON expression
+    (11) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
+    (12) if_statement -> . IF expression LBRACE statements RBRACE
+    (13) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (14) while_statement -> . WHILE expression LBRACE statements RBRACE
+    (15) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
 
-    ID              shift and go to state 10
-    FUN             shift and go to state 11
-    IF              shift and go to state 12
-    WHILE           shift and go to state 13
-    FOR             shift and go to state 14
-    NUMBER          shift and go to state 15
+    RBRACE          shift and go to state 41
+    ID              shift and go to state 9
+    FUN             shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
 
-    statements                     shift and go to state 41
-    statement                      shift and go to state 3
+    statement                      shift and go to state 14
     variable_declaration           shift and go to state 4
     function_definition            shift and go to state 5
     if_statement                   shift and go to state 6
     while_statement                shift and go to state 7
     for_statement                  shift and go to state 8
-    expression                     shift and go to state 9
-
-state 38
-
-    (13) if_statement -> IF expression LBRACE statements RBRACE .
-    (14) if_statement -> IF expression LBRACE statements RBRACE . ELSE LBRACE statements RBRACE
-
-    ID              reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE .)
-    FUN             reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE .)
-    IF              reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE .)
-    WHILE           reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE .)
-    FOR             reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE .)
-    NUMBER          reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE .)
-    $end            reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE .)
-    RBRACE          reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE .)
-    ELSE            shift and go to state 42
-
 
 state 39
 
-    (15) while_statement -> WHILE expression LBRACE statements RBRACE .
+    (13) if_statement -> IF expression LBRACE statements RBRACE ELSE . LBRACE statements RBRACE
 
-    ID              reduce using rule 15 (while_statement -> WHILE expression LBRACE statements RBRACE .)
-    FUN             reduce using rule 15 (while_statement -> WHILE expression LBRACE statements RBRACE .)
-    IF              reduce using rule 15 (while_statement -> WHILE expression LBRACE statements RBRACE .)
-    WHILE           reduce using rule 15 (while_statement -> WHILE expression LBRACE statements RBRACE .)
-    FOR             reduce using rule 15 (while_statement -> WHILE expression LBRACE statements RBRACE .)
-    NUMBER          reduce using rule 15 (while_statement -> WHILE expression LBRACE statements RBRACE .)
-    $end            reduce using rule 15 (while_statement -> WHILE expression LBRACE statements RBRACE .)
-    RBRACE          reduce using rule 15 (while_statement -> WHILE expression LBRACE statements RBRACE .)
+    LBRACE          shift and go to state 42
 
 
 state 40
 
-    (16) for_statement -> FOR ID IN expression DOTDOT . expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (15) for_statement -> FOR ID IN expression DOTDOT expression . LBRACE statements RBRACE
 
-    ID              shift and go to state 22
-    NUMBER          shift and go to state 15
+    LBRACE          shift and go to state 43
 
-    expression                     shift and go to state 43
 
 state 41
 
-    (12) function_definition -> FUN ID LPAREN RPAREN LBRACE statements . RBRACE
-    (3) statements -> statements . statement
-    (4) statement -> . variable_declaration
+    (11) function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .
+
+    ID              reduce using rule 11 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
+    FUN             reduce using rule 11 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
+    IF              reduce using rule 11 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
+    WHILE           reduce using rule 11 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
+    FOR             reduce using rule 11 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
+    $end            reduce using rule 11 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 11 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
+
+
+state 42
+
+    (13) if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE . statements RBRACE
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . variable_declaration SEMICOLON
     (5) statement -> . function_definition
     (6) statement -> . if_statement
     (7) statement -> . while_statement
     (8) statement -> . for_statement
-    (9) statement -> . expression SEMICOLON
-    (10) variable_declaration -> . ID EQUALS expression SEMICOLON
-    (11) variable_declaration -> . ID COLON expression SEMICOLON
-    (12) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
-    (13) if_statement -> . IF expression LBRACE statements RBRACE
-    (14) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-    (15) while_statement -> . WHILE expression LBRACE statements RBRACE
-    (16) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (9) variable_declaration -> . ID EQUALS expression
+    (10) variable_declaration -> . ID COLON expression
+    (11) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
+    (12) if_statement -> . IF expression LBRACE statements RBRACE
+    (13) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (14) while_statement -> . WHILE expression LBRACE statements RBRACE
+    (15) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
 
-    RBRACE          shift and go to state 44
-    ID              shift and go to state 10
-    FUN             shift and go to state 11
-    IF              shift and go to state 12
-    WHILE           shift and go to state 13
-    FOR             shift and go to state 14
-    NUMBER          shift and go to state 15
+    ID              shift and go to state 9
+    FUN             shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
 
-    statement                      shift and go to state 16
+    statements                     shift and go to state 44
+    statement                      shift and go to state 3
     variable_declaration           shift and go to state 4
     function_definition            shift and go to state 5
     if_statement                   shift and go to state 6
     while_statement                shift and go to state 7
     for_statement                  shift and go to state 8
-    expression                     shift and go to state 9
-
-state 42
-
-    (14) if_statement -> IF expression LBRACE statements RBRACE ELSE . LBRACE statements RBRACE
-
-    LBRACE          shift and go to state 45
-
 
 state 43
 
-    (16) for_statement -> FOR ID IN expression DOTDOT expression . LBRACE statements RBRACE
-
-    LBRACE          shift and go to state 46
-
-
-state 44
-
-    (12) function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .
-
-    ID              reduce using rule 12 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
-    FUN             reduce using rule 12 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
-    IF              reduce using rule 12 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
-    WHILE           reduce using rule 12 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
-    FOR             reduce using rule 12 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
-    NUMBER          reduce using rule 12 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
-    $end            reduce using rule 12 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
-    RBRACE          reduce using rule 12 (function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE .)
-
-
-state 45
-
-    (14) if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE . statements RBRACE
-    (2) statements -> . statement
-    (3) statements -> . statements statement
-    (4) statement -> . variable_declaration
+    (15) for_statement -> FOR ID IN expression DOTDOT expression LBRACE . statements RBRACE
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . variable_declaration SEMICOLON
     (5) statement -> . function_definition
     (6) statement -> . if_statement
     (7) statement -> . while_statement
     (8) statement -> . for_statement
-    (9) statement -> . expression SEMICOLON
-    (10) variable_declaration -> . ID EQUALS expression SEMICOLON
-    (11) variable_declaration -> . ID COLON expression SEMICOLON
-    (12) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
-    (13) if_statement -> . IF expression LBRACE statements RBRACE
-    (14) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-    (15) while_statement -> . WHILE expression LBRACE statements RBRACE
-    (16) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (9) variable_declaration -> . ID EQUALS expression
+    (10) variable_declaration -> . ID COLON expression
+    (11) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
+    (12) if_statement -> . IF expression LBRACE statements RBRACE
+    (13) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (14) while_statement -> . WHILE expression LBRACE statements RBRACE
+    (15) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
 
-    ID              shift and go to state 10
-    FUN             shift and go to state 11
-    IF              shift and go to state 12
-    WHILE           shift and go to state 13
-    FOR             shift and go to state 14
-    NUMBER          shift and go to state 15
+    ID              shift and go to state 9
+    FUN             shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
 
-    expression                     shift and go to state 9
-    statements                     shift and go to state 47
+    statements                     shift and go to state 45
     statement                      shift and go to state 3
+    variable_declaration           shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    while_statement                shift and go to state 7
+    for_statement                  shift and go to state 8
+
+state 44
+
+    (13) if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements . RBRACE
+    (2) statements -> statements . statement
+    (4) statement -> . variable_declaration SEMICOLON
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . while_statement
+    (8) statement -> . for_statement
+    (9) variable_declaration -> . ID EQUALS expression
+    (10) variable_declaration -> . ID COLON expression
+    (11) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
+    (12) if_statement -> . IF expression LBRACE statements RBRACE
+    (13) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (14) while_statement -> . WHILE expression LBRACE statements RBRACE
+    (15) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
+
+    RBRACE          shift and go to state 46
+    ID              shift and go to state 9
+    FUN             shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
+
+    statement                      shift and go to state 14
+    variable_declaration           shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    while_statement                shift and go to state 7
+    for_statement                  shift and go to state 8
+
+state 45
+
+    (15) for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements . RBRACE
+    (2) statements -> statements . statement
+    (4) statement -> . variable_declaration SEMICOLON
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . while_statement
+    (8) statement -> . for_statement
+    (9) variable_declaration -> . ID EQUALS expression
+    (10) variable_declaration -> . ID COLON expression
+    (11) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
+    (12) if_statement -> . IF expression LBRACE statements RBRACE
+    (13) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (14) while_statement -> . WHILE expression LBRACE statements RBRACE
+    (15) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
+
+    RBRACE          shift and go to state 47
+    ID              shift and go to state 9
+    FUN             shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
+
+    statement                      shift and go to state 14
     variable_declaration           shift and go to state 4
     function_definition            shift and go to state 5
     if_statement                   shift and go to state 6
@@ -776,137 +770,26 @@ state 45
 
 state 46
 
-    (16) for_statement -> FOR ID IN expression DOTDOT expression LBRACE . statements RBRACE
-    (2) statements -> . statement
-    (3) statements -> . statements statement
-    (4) statement -> . variable_declaration
-    (5) statement -> . function_definition
-    (6) statement -> . if_statement
-    (7) statement -> . while_statement
-    (8) statement -> . for_statement
-    (9) statement -> . expression SEMICOLON
-    (10) variable_declaration -> . ID EQUALS expression SEMICOLON
-    (11) variable_declaration -> . ID COLON expression SEMICOLON
-    (12) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
-    (13) if_statement -> . IF expression LBRACE statements RBRACE
-    (14) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-    (15) while_statement -> . WHILE expression LBRACE statements RBRACE
-    (16) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (13) if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .
 
-    ID              shift and go to state 10
-    FUN             shift and go to state 11
-    IF              shift and go to state 12
-    WHILE           shift and go to state 13
-    FOR             shift and go to state 14
-    NUMBER          shift and go to state 15
+    ID              reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    FUN             reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    IF              reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    WHILE           reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    FOR             reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    $end            reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 13 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
 
-    expression                     shift and go to state 9
-    statements                     shift and go to state 48
-    statement                      shift and go to state 3
-    variable_declaration           shift and go to state 4
-    function_definition            shift and go to state 5
-    if_statement                   shift and go to state 6
-    while_statement                shift and go to state 7
-    for_statement                  shift and go to state 8
 
 state 47
 
-    (14) if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements . RBRACE
-    (3) statements -> statements . statement
-    (4) statement -> . variable_declaration
-    (5) statement -> . function_definition
-    (6) statement -> . if_statement
-    (7) statement -> . while_statement
-    (8) statement -> . for_statement
-    (9) statement -> . expression SEMICOLON
-    (10) variable_declaration -> . ID EQUALS expression SEMICOLON
-    (11) variable_declaration -> . ID COLON expression SEMICOLON
-    (12) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
-    (13) if_statement -> . IF expression LBRACE statements RBRACE
-    (14) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-    (15) while_statement -> . WHILE expression LBRACE statements RBRACE
-    (16) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
+    (15) for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .
 
-    RBRACE          shift and go to state 49
-    ID              shift and go to state 10
-    FUN             shift and go to state 11
-    IF              shift and go to state 12
-    WHILE           shift and go to state 13
-    FOR             shift and go to state 14
-    NUMBER          shift and go to state 15
-
-    expression                     shift and go to state 9
-    statement                      shift and go to state 16
-    variable_declaration           shift and go to state 4
-    function_definition            shift and go to state 5
-    if_statement                   shift and go to state 6
-    while_statement                shift and go to state 7
-    for_statement                  shift and go to state 8
-
-state 48
-
-    (16) for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements . RBRACE
-    (3) statements -> statements . statement
-    (4) statement -> . variable_declaration
-    (5) statement -> . function_definition
-    (6) statement -> . if_statement
-    (7) statement -> . while_statement
-    (8) statement -> . for_statement
-    (9) statement -> . expression SEMICOLON
-    (10) variable_declaration -> . ID EQUALS expression SEMICOLON
-    (11) variable_declaration -> . ID COLON expression SEMICOLON
-    (12) function_definition -> . FUN ID LPAREN RPAREN LBRACE statements RBRACE
-    (13) if_statement -> . IF expression LBRACE statements RBRACE
-    (14) if_statement -> . IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE
-    (15) while_statement -> . WHILE expression LBRACE statements RBRACE
-    (16) for_statement -> . FOR ID IN expression DOTDOT expression LBRACE statements RBRACE
-    (17) expression -> . ID
-    (18) expression -> . NUMBER
-
-    RBRACE          shift and go to state 50
-    ID              shift and go to state 10
-    FUN             shift and go to state 11
-    IF              shift and go to state 12
-    WHILE           shift and go to state 13
-    FOR             shift and go to state 14
-    NUMBER          shift and go to state 15
-
-    expression                     shift and go to state 9
-    statement                      shift and go to state 16
-    variable_declaration           shift and go to state 4
-    function_definition            shift and go to state 5
-    if_statement                   shift and go to state 6
-    while_statement                shift and go to state 7
-    for_statement                  shift and go to state 8
-
-state 49
-
-    (14) if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .
-
-    ID              reduce using rule 14 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
-    FUN             reduce using rule 14 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
-    IF              reduce using rule 14 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
-    WHILE           reduce using rule 14 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
-    FOR             reduce using rule 14 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
-    NUMBER          reduce using rule 14 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
-    $end            reduce using rule 14 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
-    RBRACE          reduce using rule 14 (if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
-
-
-state 50
-
-    (16) for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .
-
-    ID              reduce using rule 16 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
-    FUN             reduce using rule 16 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
-    IF              reduce using rule 16 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
-    WHILE           reduce using rule 16 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
-    FOR             reduce using rule 16 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
-    NUMBER          reduce using rule 16 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
-    $end            reduce using rule 16 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
-    RBRACE          reduce using rule 16 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
+    ID              reduce using rule 15 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
+    FUN             reduce using rule 15 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
+    IF              reduce using rule 15 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
+    WHILE           reduce using rule 15 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
+    FOR             reduce using rule 15 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
+    $end            reduce using rule 15 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 15 (for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE .)
 

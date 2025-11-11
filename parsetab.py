@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'COLON DOTDOT ELSE EQUALS FOR FUN ID IF IN LBRACE LPAREN NUMBER RBRACE RPAREN SEMICOLON WHILEprogram : statementsstatements : statement\n| statements statementstatement : variable_declaration\n| function_definition\n| if_statement\n| while_statement\n| for_statement\n| expression SEMICOLONvariable_declaration : ID EQUALS expression SEMICOLON\n| ID COLON expression SEMICOLONfunction_definition : FUN ID LPAREN RPAREN LBRACE statements RBRACEif_statement : IF expression LBRACE statements RBRACE\n| IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACEwhile_statement : WHILE expression LBRACE statements RBRACEfor_statement : FOR ID IN expression DOTDOT expression LBRACE statements RBRACEexpression : ID\n| NUMBER'
+_lr_signature = 'COLON DOTDOT ELSE EQUALS FOR FUN ID IF IN LBRACE LPAREN NUMBER RBRACE RPAREN SEMICOLON WHILEprogram : statementsstatements : statements statementstatements : statementstatement : variable_declaration SEMICOLON\n| function_definition\n| if_statement\n| while_statement\n| for_statementvariable_declaration : ID EQUALS expressionvariable_declaration : ID COLON expressionfunction_definition : FUN ID LPAREN RPAREN LBRACE statements RBRACEif_statement : IF expression LBRACE statements RBRACE\n| IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACEwhile_statement : WHILE expression LBRACE statements RBRACEfor_statement : FOR ID IN expression DOTDOT expression LBRACE statements RBRACEexpression : IDexpression : NUMBER'
     
-_lr_action_items = {'ID':([0,2,3,4,5,6,7,8,11,12,13,14,16,17,18,19,28,29,30,31,32,34,35,37,38,39,40,41,44,45,46,47,48,49,50,],[10,10,-2,-4,-5,-6,-7,-8,20,22,22,24,-3,-9,22,22,10,10,22,-10,-11,10,10,10,-13,-15,22,10,-12,10,10,10,10,-14,-16,]),'FUN':([0,2,3,4,5,6,7,8,16,17,28,29,31,32,34,35,37,38,39,41,44,45,46,47,48,49,50,],[11,11,-2,-4,-5,-6,-7,-8,-3,-9,11,11,-10,-11,11,11,11,-13,-15,11,-12,11,11,11,11,-14,-16,]),'IF':([0,2,3,4,5,6,7,8,16,17,28,29,31,32,34,35,37,38,39,41,44,45,46,47,48,49,50,],[12,12,-2,-4,-5,-6,-7,-8,-3,-9,12,12,-10,-11,12,12,12,-13,-15,12,-12,12,12,12,12,-14,-16,]),'WHILE':([0,2,3,4,5,6,7,8,16,17,28,29,31,32,34,35,37,38,39,41,44,45,46,47,48,49,50,],[13,13,-2,-4,-5,-6,-7,-8,-3,-9,13,13,-10,-11,13,13,13,-13,-15,13,-12,13,13,13,13,-14,-16,]),'FOR':([0,2,3,4,5,6,7,8,16,17,28,29,31,32,34,35,37,38,39,41,44,45,46,47,48,49,50,],[14,14,-2,-4,-5,-6,-7,-8,-3,-9,14,14,-10,-11,14,14,14,-13,-15,14,-12,14,14,14,14,-14,-16,]),'NUMBER':([0,2,3,4,5,6,7,8,12,13,16,17,18,19,28,29,30,31,32,34,35,37,38,39,40,41,44,45,46,47,48,49,50,],[15,15,-2,-4,-5,-6,-7,-8,15,15,-3,-9,15,15,15,15,15,-10,-11,15,15,15,-13,-15,15,15,-12,15,15,15,15,-14,-16,]),'$end':([1,2,3,4,5,6,7,8,16,17,31,32,38,39,44,49,50,],[0,-1,-2,-4,-5,-6,-7,-8,-3,-9,-10,-11,-13,-15,-12,-14,-16,]),'RBRACE':([3,4,5,6,7,8,16,17,31,32,34,35,38,39,41,44,47,48,49,50,],[-2,-4,-5,-6,-7,-8,-3,-9,-10,-11,38,39,-13,-15,44,-12,49,50,-14,-16,]),'SEMICOLON':([9,10,15,22,25,26,],[17,-17,-18,-17,31,32,]),'EQUALS':([10,],[18,]),'COLON':([10,],[19,]),'LBRACE':([15,21,22,23,33,42,43,],[-18,28,-17,29,37,45,46,]),'DOTDOT':([15,22,36,],[-18,-17,40,]),'LPAREN':([20,],[27,]),'IN':([24,],[30,]),'RPAREN':([27,],[33,]),'ELSE':([38,],[42,]),}
+_lr_action_items = {'ID':([0,2,3,5,6,7,8,10,11,12,13,14,15,16,17,27,28,29,31,32,34,35,36,37,38,41,42,43,44,45,46,47,],[9,9,-3,-5,-6,-7,-8,18,20,20,23,-2,-4,20,20,9,9,20,9,9,9,-12,-14,20,9,-11,9,9,9,9,-13,-15,]),'FUN':([0,2,3,5,6,7,8,14,15,27,28,31,32,34,35,36,38,41,42,43,44,45,46,47,],[10,10,-3,-5,-6,-7,-8,-2,-4,10,10,10,10,10,-12,-14,10,-11,10,10,10,10,-13,-15,]),'IF':([0,2,3,5,6,7,8,14,15,27,28,31,32,34,35,36,38,41,42,43,44,45,46,47,],[11,11,-3,-5,-6,-7,-8,-2,-4,11,11,11,11,11,-12,-14,11,-11,11,11,11,11,-13,-15,]),'WHILE':([0,2,3,5,6,7,8,14,15,27,28,31,32,34,35,36,38,41,42,43,44,45,46,47,],[12,12,-3,-5,-6,-7,-8,-2,-4,12,12,12,12,12,-12,-14,12,-11,12,12,12,12,-13,-15,]),'FOR':([0,2,3,5,6,7,8,14,15,27,28,31,32,34,35,36,38,41,42,43,44,45,46,47,],[13,13,-3,-5,-6,-7,-8,-2,-4,13,13,13,13,13,-12,-14,13,-11,13,13,13,13,-13,-15,]),'$end':([1,2,3,5,6,7,8,14,15,35,36,41,46,47,],[0,-1,-3,-5,-6,-7,-8,-2,-4,-12,-14,-11,-13,-15,]),'RBRACE':([3,5,6,7,8,14,15,31,32,35,36,38,41,44,45,46,47,],[-3,-5,-6,-7,-8,-2,-4,35,36,-12,-14,41,-11,46,47,-13,-15,]),'SEMICOLON':([4,20,21,24,25,],[15,-16,-17,-9,-10,]),'EQUALS':([9,],[16,]),'COLON':([9,],[17,]),'NUMBER':([11,12,16,17,29,37,],[21,21,21,21,21,21,]),'LPAREN':([18,],[26,]),'LBRACE':([19,20,21,22,30,39,40,],[27,-16,-17,28,34,42,43,]),'DOTDOT':([20,21,33,],[-16,-17,37,]),'IN':([23,],[29,]),'RPAREN':([26,],[30,]),'ELSE':([35,],[39,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'statements':([0,28,29,37,45,46,],[2,34,35,41,47,48,]),'statement':([0,2,28,29,34,35,37,41,45,46,47,48,],[3,16,3,3,16,16,3,16,3,3,16,16,]),'variable_declaration':([0,2,28,29,34,35,37,41,45,46,47,48,],[4,4,4,4,4,4,4,4,4,4,4,4,]),'function_definition':([0,2,28,29,34,35,37,41,45,46,47,48,],[5,5,5,5,5,5,5,5,5,5,5,5,]),'if_statement':([0,2,28,29,34,35,37,41,45,46,47,48,],[6,6,6,6,6,6,6,6,6,6,6,6,]),'while_statement':([0,2,28,29,34,35,37,41,45,46,47,48,],[7,7,7,7,7,7,7,7,7,7,7,7,]),'for_statement':([0,2,28,29,34,35,37,41,45,46,47,48,],[8,8,8,8,8,8,8,8,8,8,8,8,]),'expression':([0,2,12,13,18,19,28,29,30,34,35,37,40,41,45,46,47,48,],[9,9,21,23,25,26,9,9,36,9,9,9,43,9,9,9,9,9,]),}
+_lr_goto_items = {'program':([0,],[1,]),'statements':([0,27,28,34,42,43,],[2,31,32,38,44,45,]),'statement':([0,2,27,28,31,32,34,38,42,43,44,45,],[3,14,3,3,14,14,3,14,3,3,14,14,]),'variable_declaration':([0,2,27,28,31,32,34,38,42,43,44,45,],[4,4,4,4,4,4,4,4,4,4,4,4,]),'function_definition':([0,2,27,28,31,32,34,38,42,43,44,45,],[5,5,5,5,5,5,5,5,5,5,5,5,]),'if_statement':([0,2,27,28,31,32,34,38,42,43,44,45,],[6,6,6,6,6,6,6,6,6,6,6,6,]),'while_statement':([0,2,27,28,31,32,34,38,42,43,44,45,],[7,7,7,7,7,7,7,7,7,7,7,7,]),'for_statement':([0,2,27,28,31,32,34,38,42,43,44,45,],[8,8,8,8,8,8,8,8,8,8,8,8,]),'expression':([11,12,16,17,29,37,],[19,22,24,25,33,40,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,22 +27,21 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> program","S'",1,None,None,None),
-  ('program -> statements','program',1,'p_program','parser.py',5),
-  ('statements -> statement','statements',1,'p_statements','parser.py',9),
-  ('statements -> statements statement','statements',2,'p_statements','parser.py',10),
-  ('statement -> variable_declaration','statement',1,'p_statement','parser.py',17),
-  ('statement -> function_definition','statement',1,'p_statement','parser.py',18),
-  ('statement -> if_statement','statement',1,'p_statement','parser.py',19),
-  ('statement -> while_statement','statement',1,'p_statement','parser.py',20),
-  ('statement -> for_statement','statement',1,'p_statement','parser.py',21),
-  ('statement -> expression SEMICOLON','statement',2,'p_statement','parser.py',22),
-  ('variable_declaration -> ID EQUALS expression SEMICOLON','variable_declaration',4,'p_variable_declaration','parser.py',29),
-  ('variable_declaration -> ID COLON expression SEMICOLON','variable_declaration',4,'p_variable_declaration','parser.py',30),
-  ('function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE','function_definition',7,'p_function_definition','parser.py',37),
-  ('if_statement -> IF expression LBRACE statements RBRACE','if_statement',5,'p_if_statement','parser.py',41),
-  ('if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE','if_statement',9,'p_if_statement','parser.py',42),
-  ('while_statement -> WHILE expression LBRACE statements RBRACE','while_statement',5,'p_while_statement','parser.py',49),
-  ('for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE','for_statement',9,'p_for_statement','parser.py',53),
-  ('expression -> ID','expression',1,'p_expression','parser.py',57),
-  ('expression -> NUMBER','expression',1,'p_expression','parser.py',58),
+  ('program -> statements','program',1,'p_program','parser.py',6),
+  ('statements -> statements statement','statements',2,'p_statements_multiple','parser.py',11),
+  ('statements -> statement','statements',1,'p_statements_single','parser.py',15),
+  ('statement -> variable_declaration SEMICOLON','statement',2,'p_statement','parser.py',20),
+  ('statement -> function_definition','statement',1,'p_statement','parser.py',21),
+  ('statement -> if_statement','statement',1,'p_statement','parser.py',22),
+  ('statement -> while_statement','statement',1,'p_statement','parser.py',23),
+  ('statement -> for_statement','statement',1,'p_statement','parser.py',24),
+  ('variable_declaration -> ID EQUALS expression','variable_declaration',3,'p_variable_declaration_assign','parser.py',29),
+  ('variable_declaration -> ID COLON expression','variable_declaration',3,'p_variable_declaration_typed','parser.py',33),
+  ('function_definition -> FUN ID LPAREN RPAREN LBRACE statements RBRACE','function_definition',7,'p_function_definition','parser.py',38),
+  ('if_statement -> IF expression LBRACE statements RBRACE','if_statement',5,'p_if_statement','parser.py',43),
+  ('if_statement -> IF expression LBRACE statements RBRACE ELSE LBRACE statements RBRACE','if_statement',9,'p_if_statement','parser.py',44),
+  ('while_statement -> WHILE expression LBRACE statements RBRACE','while_statement',5,'p_while_statement','parser.py',52),
+  ('for_statement -> FOR ID IN expression DOTDOT expression LBRACE statements RBRACE','for_statement',9,'p_for_statement','parser.py',57),
+  ('expression -> ID','expression',1,'p_expression_id','parser.py',62),
+  ('expression -> NUMBER','expression',1,'p_expression_number','parser.py',66),
 ]
